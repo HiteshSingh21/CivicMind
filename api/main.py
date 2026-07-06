@@ -9,6 +9,7 @@ Serves the frontend as static files from the /frontend directory.
 
 import os
 import sys
+import subprocess
 from pathlib import Path
 
 # Add project root to path
@@ -31,22 +32,22 @@ from contextlib import asynccontextmanager
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    # This runs right as the server binds to the port
     db_path = PROJECT_ROOT / "data" / "structured" / "civic_records.db"
-    chroma_dir = PROJECT_ROOT / "data" / "chromadb"
-    
-    if not db_path.exists() or not chroma_dir.exists():
-        print("[Startup] Persistent storage missing. Running seed script...")
+    unstructured_dir = PROJECT_ROOT / "data" / "unstructured"
+
+    if not db_path.exists() or not unstructured_dir.exists():
+        print("[Startup] Running async seed and vector indexing...")
         try:
-            from data.seed import main as seed_main
-            seed_main()
-            
-            # Initialize vector store to build indices
-            from agents.utils.vector_store import get_vector_store
-            get_vector_store()
-            print("[Startup] Seeding and vector indexing complete.")
+            subprocess.run(
+                [sys.executable, "data/seed.py"],
+                cwd=str(PROJECT_ROOT),
+                check=True,
+            )
+            print("[Startup] Seeding complete.")
         except Exception as e:
-            print(f"[Startup] Error during seeding: {e}")
-            
+            print(f"[Warning] Seeding failed but moving forward: {e}")
+
     yield
 
 

@@ -1,0 +1,10 @@
+{
+  "issue_type": "overflowing_waste_bin",
+  "description": "Overflowing public waste bin on Oak Avenue between 5th and 6th Street, Riverside",
+  "latitude": 40.7592,
+  "longitude": -73.9848,
+  "neighborhood": "Riverside",
+  "timestamp": "2026-06-22T14:30:00Z",
+  "submitted_by": "citizen_anonymous",
+  "notes": "Bin has not been collected for over a week. Pest activity observed."
+}

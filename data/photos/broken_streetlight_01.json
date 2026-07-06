@@ -1,0 +1,10 @@
+{
+  "issue_type": "broken_streetlight",
+  "description": "Non-functional streetlight on Lakeview Boulevard near Harbor Drive, Lakeside",
+  "latitude": 40.7623,
+  "longitude": -73.979,
+  "neighborhood": "Lakeside",
+  "timestamp": "2026-06-05T21:15:00Z",
+  "submitted_by": "citizen_anonymous",
+  "notes": "One of three streetlights out on this stretch. Safety concern for pedestrians."
+}

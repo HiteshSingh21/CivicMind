@@ -1,0 +1,11 @@
+{
+  "issue_type": "pothole",
+  "description": "Large pothole at intersection of Oak Avenue and 5th Street, Riverside",
+  "latitude": 40.7589,
+  "longitude": -73.9851,
+  "neighborhood": "Riverside",
+  "timestamp": "2026-06-10T08:45:00Z",
+  "submitted_by": "citizen_anonymous",
+  "estimated_size_inches": 24,
+  "notes": "Located on Route 14 bus corridor. Multiple tire damage reports."
+}

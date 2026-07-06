@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CivicMind - Multi-Agent Civic Intelligence Platform. Watches, predicts, explains, and acts on city data.">
+    <title>CivicMind - Civic Intelligence Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <!-- Header -->
+    <header id="app-header">
+        <div class="header-content">
+            <div class="logo-group">
+                <div class="logo-icon">
+                    <span class="material-icons-round">hub</span>
+                </div>
+                <div class="logo-text">
+                    <h1>CivicMind</h1>
+                    <p class="tagline">watches &middot; predicts &middot; explains &middot; acts</p>
+                </div>
+            </div>
+            <div class="header-badges">
+                <span class="badge badge-google">
+                    <span class="material-icons-round">cloud</span>
+                    Google ADK
+                </span>
+                <span class="badge badge-ai">
+                    <span class="material-icons-round">auto_awesome</span>
+                    Gemini 2.0
+                </span>
+                <span class="badge badge-agents">
+                    <span class="material-icons-round">group_work</span>
+                    6 Agents
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Layout -->
+    <main id="app-main">
+        <!-- Sidebar: Agent Architecture -->
+        <aside id="agent-sidebar">
+            <h3 class="sidebar-title">Agent Architecture</h3>
+            <div class="agent-card" id="agent-card-supervisor" data-agent="supervisor">
+                <div class="agent-icon" style="--agent-color: #90CAF9">
+                    <span class="material-icons-round">hub</span>
+                </div>
+                <div class="agent-info">
+                    <span class="agent-name">Supervisor</span>
+                    <span class="agent-desc">Routes &amp; orchestrates</span>
+                </div>
+                <div class="agent-status"></div>
+            </div>
+            <div class="agent-tree-line"></div>
+            <div class="agent-card" id="agent-card-data" data-agent="structured">
+                <div class="agent-icon" style="--agent-color: #4FC3F7">
+                    <span class="material-icons-round">storage</span>
+                </div>
+                <div class="agent-info">
+                    <span class="agent-name">Data Agent</span>
+                    <span class="agent-desc">NL-to-SQL queries</span>
+                </div>
+                <div class="agent-status"></div>
+            </div>
+            <div class="agent-card" id="agent-card-rag" data-agent="unstructured">
+                <div class="agent-icon" style="--agent-color: #81C784">
+                    <span class="material-icons-round">search</span>
+                </div>
+                <div class="agent-info">
+                    <span class="agent-name">RAG Agent</span>
+                    <span class="agent-desc">Grounded search</span>
+                </div>
+                <div class="agent-status"></div>
+            </div>
+            <div class="agent-card" id="agent-card-forecast" data-agent="predictive">
+                <div class="agent-icon" style="--agent-color: #FFB74D">
+                    <span class="material-icons-round">trending_up</span>
+                </div>
+                <div class="agent-info">
+                    <span class="agent-name">Forecasting Agent</span>
+                    <span class="agent-desc">Time series prediction</span>
+                </div>
+                <div class="agent-status"></div>
+            </div>
+            <div class="agent-card" id="agent-card-multimodal" data-agent="multimodal">
+                <div class="agent-icon" style="--agent-color: #CE93D8">
+                    <span class="material-icons-round">photo_camera</span>
+                </div>
+                <div class="agent-info">
+                    <span class="agent-name">Vision Agent</span>
+                    <span class="agent-desc">Photo analysis</span>
+                </div>
+                <div class="agent-status"></div>
+            </div>
+            <div class="agent-card" id="agent-card-action" data-agent="action">
+                <div class="agent-icon" style="--agent-color: #EF5350">
+                    <span class="material-icons-round">gavel</span>
+                </div>
+                <div class="agent-info">
+                    <span class="agent-name">Action Agent</span>
+                    <span class="agent-desc">Human-in-the-loop</span>
+                </div>
+                <div class="agent-status"></div>
+            </div>
+
+            <div class="sidebar-section">
+                <h4>Responsible AI</h4>
+                <div class="rai-badges">
+                    <div class="rai-badge">
+                        <span class="material-icons-round">verified</span>
+                        Source Citations
+                    </div>
+                    <div class="rai-badge">
+                        <span class="material-icons-round">shield</span>
+                        PII Redaction
+                    </div>
+                    <div class="rai-badge">
+                        <span class="material-icons-round">ssid_chart</span>
+                        Confidence Bands
+                    </div>
+                    <div class="rai-badge">
+                        <span class="material-icons-round">supervisor_account</span>
+                        Human Approval
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Chat Area -->
+        <section id="chat-area">
+            <!-- Messages -->
+            <div id="messages-container">
+                <!-- Welcome message -->
+                <div class="message system-message" id="welcome-message">
+                    <div class="message-icon">
+                        <span class="material-icons-round">auto_awesome</span>
+                    </div>
+                    <div class="message-content">
+                        <h2>Welcome to CivicMind</h2>
+                        <p>I don't just answer questions about your city &mdash; I <strong>watch</strong>, <strong>predict</strong>, <strong>explain</strong>, and <strong>act</strong>.</p>
+                        <p class="subtitle">Try one of the demo scenarios below, or ask your own question.</p>
+                        <div class="demo-queries" id="demo-queries">
+                            <button class="demo-btn" data-query="Which neighborhoods had the highest respiratory complaint spike last month?" id="demo-btn-1">
+                                <span class="demo-icon" style="--demo-color: #4FC3F7">
+                                    <span class="material-icons-round">storage</span>
+                                </span>
+                                <div class="demo-text">
+                                    <span class="demo-label">Structured Query</span>
+                                    <span class="demo-question">Respiratory complaint spikes by neighborhood</span>
+                                </div>
+                            </button>
+                            <button class="demo-btn" data-query="What have citizens said about bus route 14 reliability?" id="demo-btn-2">
+                                <span class="demo-icon" style="--demo-color: #81C784">
+                                    <span class="material-icons-round">search</span>
+                                </span>
+                                <div class="demo-text">
+                                    <span class="demo-label">Document Search</span>
+                                    <span class="demo-question">Citizen feedback on Bus Route 14</span>
+                                </div>
+                            </button>
+                            <button class="demo-btn" data-query="Will respiratory complaints in Riverside keep rising next month?" id="demo-btn-3">
+                                <span class="demo-icon" style="--demo-color: #FFB74D">
+                                    <span class="material-icons-round">trending_up</span>
+                                </span>
+                                <div class="demo-text">
+                                    <span class="demo-label">Predictive Analysis</span>
+                                    <span class="demo-question">Forecast: Riverside complaint trends</span>
+                                </div>
+                            </button>
+                            <button class="demo-btn demo-btn-photo" data-query="Analyze this civic issue and create a work order" id="demo-btn-4">
+                                <span class="demo-icon" style="--demo-color: #CE93D8">
+                                    <span class="material-icons-round">photo_camera</span>
+                                </span>
+                                <div class="demo-text">
+                                    <span class="demo-label">Photo Analysis + Action</span>
+                                    <span class="demo-question">Upload a photo &rarr; classify &rarr; work order</span>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input Area -->
+            <div id="input-area">
+                <div id="image-preview" class="hidden">
+                    <img id="preview-img" src="" alt="Upload preview">
+                    <button id="remove-image" class="icon-btn">
+                        <span class="material-icons-round">close</span>
+                    </button>
+                    <span class="preview-label">Image attached</span>
+                </div>
+                <div class="input-row">
+                    <label for="image-upload" class="icon-btn upload-btn" id="upload-label" title="Upload a photo">
+                        <span class="material-icons-round">add_photo_alternate</span>
+                        <input type="file" id="image-upload" accept="image/*" hidden>
+                    </label>
+                    <input type="text" id="query-input" placeholder="Ask about your city... or upload a photo of a civic issue" autocomplete="off">
+                    <button id="send-btn" class="send-button" title="Send">
+                        <span class="material-icons-round">arrow_upward</span>
+                    </button>
+                </div>
+                <div class="input-footer">
+                    <span class="footer-badge">
+                        <span class="material-icons-round">security</span>
+                        PII auto-redacted
+                    </span>
+                    <span class="footer-badge">
+                        <span class="material-icons-round">verified</span>
+                        All answers cite sources
+                    </span>
+                    <span class="footer-badge">
+                        <span class="material-icons-round">supervisor_account</span>
+                        Actions require human approval
+                    </span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Drop Zone Overlay -->
+    <div id="drop-zone" class="hidden">
+        <div class="drop-zone-content">
+            <span class="material-icons-round">cloud_upload</span>
+            <p>Drop your photo here</p>
+            <p class="drop-subtitle">Pothole, broken streetlight, overflowing bin...</p>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

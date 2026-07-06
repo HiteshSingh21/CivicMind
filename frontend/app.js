@@ -254,9 +254,9 @@ async function startAnalysis(query, image) {
 
             buffer += decoder.decode(value, { stream: true });
 
-            // SSE spec: events are separated by blank lines (\n\n)
+            // SSE spec: events are separated by blank lines (\n\n or \r\n\r\n)
             // Split on double-newline to get complete event blocks
-            const blocks = buffer.split('\n\n');
+            const blocks = buffer.split(/\r?\n\r?\n/);
             // Last element may be incomplete - keep in buffer
             buffer = blocks.pop() || '';
 
@@ -266,7 +266,7 @@ async function startAnalysis(query, image) {
                 let eventType = null;
                 let eventData = null;
 
-                const lines = block.split('\n');
+                const lines = block.split(/\r?\n/);
                 for (const line of lines) {
                     if (line.startsWith('event:')) {
                         eventType = line.substring(6).trim();
